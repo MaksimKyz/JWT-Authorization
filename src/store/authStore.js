@@ -50,9 +50,6 @@ export const checkLogin = createAsyncThunk(
     async function (_,{rejectedWithValue,dispatch}){
         try {
             const response = await AuthService.checkAuth(localStorage.getItem('access'))
-            if (response!==undefined){
-                dispatch(setAuth(true))
-            }
         }catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -64,13 +61,12 @@ export const userMe = createAsyncThunk(
         try {
             const response = await AuthService.userMe()
             dispatch(setUser(response.data))
+            dispatch(setAuth(true))
         }catch (e) {
             console.log(e.response?.data?.message)
         }
     }
 )
-
-
 
 const authStore = createSlice({
     name:'auth',
