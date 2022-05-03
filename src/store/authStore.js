@@ -50,6 +50,9 @@ export const checkLogin = createAsyncThunk(
     async function (_,{rejectedWithValue,dispatch}){
         try {
             const response = await AuthService.checkAuth(localStorage.getItem('access'))
+            if (response!==undefined){
+                dispatch(setAuth(true))
+            }
         }catch (e) {
             console.log(e.response?.data?.message)
         }

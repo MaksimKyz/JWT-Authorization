@@ -28,6 +28,8 @@ const RegisterPage = (props) => {
     const registerHandler =async () => {
         await dispatch(register({first_name:first_name.value,last_name:last_name.value,username:username.value,email:email.value,password:password.value}))
     }
+    const disabled = !username.inputValid || !password.inputValid || !email.inputValid || !first_name.inputValid ||!last_name.inputValid
+
 
     return (
         <RegisterPageContainer>
@@ -59,7 +61,7 @@ const RegisterPage = (props) => {
                         {(email.isDirty && email.isEmpty) &&  <Error>Поле не может быть пустым</Error>}
                         {(email.isDirty && email.emailError) && <Error>Введите корректный email</Error>}
 
-                        <CustomButton mt={'24px'} onClick={registerHandler}>
+                        <CustomButton disabled={disabled} mt={'24px'} onClick={registerHandler}>
                             Зарегестрироваться
                         </CustomButton>
                         <HelpText mt={24}>Регистрируясь, я соглашаюсь с минимальными условиями   обслуживания и <a

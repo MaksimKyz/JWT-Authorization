@@ -11,7 +11,7 @@ const Home = (props) => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-            // dispatch(checkLogin())
+            dispatch(checkLogin())
             dispatch(userMe())
     },[])
 
